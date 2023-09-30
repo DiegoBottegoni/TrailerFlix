@@ -1,0 +1,27 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `trailerflix`.`vista_catalogo` AS
+    SELECT 
+        `c`.`id` AS `id`,
+        `c`.`poster` AS `poster`,
+        `c`.`titulo` AS `titulo`,
+        `cat`.`nombre` AS `categoria`,
+        GROUP_CONCAT(DISTINCT `g`.`nombre`
+            ORDER BY `g`.`nombre` ASC
+            SEPARATOR ', ') AS `genero`,
+        `c`.`resumen` AS `resumen`,
+        `c`.`temporadas` AS `temporadas`,
+        GROUP_CONCAT(DISTINCT `a`.`nombre`
+            ORDER BY `a`.`nombre` ASC
+            SEPARATOR ', ') AS `reparto`,
+        `c`.`trailer` AS `trailer`
+    FROM
+        (((((`trailerflix`.`catalogo` `c`
+        JOIN `trailerflix`.`categorias` `cat` ON ((`c`.`idCategoria` = `cat`.`id`)))
+        LEFT JOIN `trailerflix`.`catalogogenero` `cg` ON ((`c`.`id` = `cg`.`idCatalogo`)))
+        LEFT JOIN `trailerflix`.`genero` `g` ON ((`cg`.`idGenero` = `g`.`id`)))
+        LEFT JOIN `trailerflix`.`catalogoreparto` `cr` ON ((`c`.`id` = `cr`.`idCatalogo`)))
+        LEFT JOIN `trailerflix`.`actricesyactores` `a` ON ((`cr`.`idAct` = `a`.`id`)))
+    GROUP BY `c`.`id`
