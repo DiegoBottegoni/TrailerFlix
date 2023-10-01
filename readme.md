@@ -1,7 +1,7 @@
 # Documentación de la API TrailerFlix
 
 ## Introducción
-Esta documentación describe la API TrailerFlix, que proporciona acceso a la información almacenada en la base de datos sobre películas y series.
+Esta documentación describe la API TrailerFlix, que proporciona acceso a la información almacenada en una bbdd SQL sobre películas y series.
 
 ## Endpoints
 
