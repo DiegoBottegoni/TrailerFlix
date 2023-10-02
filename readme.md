@@ -1,7 +1,7 @@
 # Documentación de la API TrailerFlix
 
 ## Introducción
-Esta documentación describe la API TrailerFlix, que proporciona acceso a la información almacenada en una bbdd SQL sobre películas y series.
+Esta documentación describe la API TrailerFlix, que proporciona acceso a información almacenada en una bbdd SQL sobre películas y series.
 
 ## Endpoints
 
@@ -37,7 +37,7 @@ http://localhost:3001/categorias
 ##
 - **Endpoint:** `/catalogo`
 - **Método:** `GET`
-- **Descripción:** Devuelve información del catálogo completo, la vista SQL en formato JSON.
+- **Descripción:** Devuelve información del catálogo completo, una vista SQL en formato JSON.
 
 **Ejemplo de Solicitud:**
 
