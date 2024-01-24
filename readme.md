@@ -10,7 +10,7 @@ Esta documentación describe la API TrailerFlix, que proporciona acceso a inform
 | `/categorias`            | GET    | Devuelve información de todas las categorías existentes.                       |
 | `/catalogo`              | GET    | Devuelve el catálogo completo con información detallada.                        |
 | `/catalogo/:id`          | GET    | Filtra el catálogo por código de película/serie.                                |
-| `/catalogo/:nombre`      | GET    | Filtra el catálogo por nombre o parte del nombre de la película/serie.          |
+| `/catalogo/titulo/:nombre`      | GET    | Filtra el catálogo por nombre o parte del nombre de la película/serie.          |
 | `/catalogo/:genero`      | GET    | Filtra el catálogo por género del contenido.                                     |
 | `/catalogo/:categoria`   | GET    | Filtra el catálogo por categoría (serie, película).           |               |
 
