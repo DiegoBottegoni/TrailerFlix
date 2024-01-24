@@ -11,8 +11,8 @@ Esta documentación describe la API TrailerFlix, que proporciona acceso a inform
 | `/catalogo`              | GET    | Devuelve el catálogo completo con información detallada.                        |
 | `/catalogo/:id`          | GET    | Filtra el catálogo por código de película/serie.                                |
 | `/catalogo/titulo/:nombre`      | GET    | Filtra el catálogo por nombre o parte del nombre de la película/serie.          |
-| `/catalogo/:genero`      | GET    | Filtra el catálogo por género del contenido.                                     |
-| `/catalogo/:categoria`   | GET    | Filtra el catálogo por categoría (serie, película).           |               |
+| `/genero/:genero`      | GET    | Filtra el catálogo por género del contenido.                                     |
+| `/categoria/:categoria`   | GET    | Filtra el catálogo por categoría (serie, película).           |               |
 
 ## Cómo utilizar EndPoints
 
@@ -91,7 +91,7 @@ http://localhost:3001/catalogo/15
 - **Endpoint:** `/catalogo/:nombre`
 - **Descripción:** Filtra el catálogo por nombre o parte del nombre de la película/serie.
 - **Solicitud:**
-http://localhost:3001/catalogo/mand
+http://localhost:3001/catalogo/titulo/mand
 
 - **Respuesta Exitosa:**
 ```json
@@ -108,10 +108,10 @@ http://localhost:3001/catalogo/mand
 ]
 ```
 ##
-- **Endpoint:** `/catalogo/:genero`
+- **Endpoint:** `/genero/:genero`
 - **Descripción:** Filtra el catálogo por género del contenido.
 - **Solicitud:**
-http://localhost:3001/catalogo/terror
+http://localhost:3001/genero/terror
 
 - **Respuesta Exitosa:**
 ```json
@@ -149,7 +149,7 @@ http://localhost:3001/catalogo/terror
 ]
 ```
 ##
-- **Endpoint:** `/catalogo/:categoria`
+- **Endpoint:** `/categoria/:categoria`
 - **Descripción:** Filtra el catálogo por categoría (serie, película).
 - **Solicitud:**
 http://localhost:3001/catalogo/:categoria
