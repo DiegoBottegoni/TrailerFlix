@@ -88,7 +88,7 @@ http://localhost:3001/catalogo/15
 }
 ```
 ##
-- **Endpoint:** `/catalogo/:nombre`
+- **Endpoint:** `/catalogo/titulo/:nombre`
 - **Descripción:** Filtra el catálogo por nombre o parte del nombre de la película/serie.
 - **Solicitud:**
 http://localhost:3001/catalogo/titulo/mand
