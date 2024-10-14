@@ -5,14 +5,20 @@ Esta documentación describe la API TrailerFlix, que proporciona acceso a inform
 
 ## Endpoints
 
-| Endpoint                 | Método | Descripción                                      |
-|--------------------------|--------|--------------------------------------------------|
-| `/categorias`            | GET    | Devuelve información de todas las categorías existentes.                       |
-| `/catalogo`              | GET    | Devuelve el catálogo completo con información detallada.                        |
-| `/catalogo/:id`          | GET    | Filtra el catálogo por código de película/serie.                                |
-| `/catalogo/titulo/:nombre`      | GET    | Filtra el catálogo por nombre o parte del nombre de la película/serie.          |
-| `/genero/:genero`      | GET    | Filtra el catálogo por género del contenido.                                     |
-| `/categoria/:categoria`   | GET    | Filtra el catálogo por categoría (serie, película).           |               |
+| Endpoint                       | Método | Descripción                                      |
+|--------------------------------|--------|--------------------------------------------------|
+| `/categorias`                  | GET    | Devuelve información de todas las categorías existentes.                       |
+| `/catalogo`                    | GET    | Devuelve el catálogo completo con información detallada.                        |
+| `/catalogo/:id`                | GET    | Filtra el catálogo por código de película/serie.                                |
+| `/catalogo/titulo/:nombre`     | GET    | Filtra el catálogo por nombre o parte del nombre de la película/serie.          |
+| `/genero/:genero`              | GET    | Filtra el catálogo por género del contenido.                                     |
+| `/categoria/:categoria`         | GET    | Filtra el catálogo por categoría (serie, película).                             |
+| `/catalogo`                    | POST   | Crea un nuevo producto en el catálogo.                                           |
+| `/catalogo/:id`                | PUT    | Actualiza la información de un producto existente en el catálogo.               |
+| `/catalogo/:id`                | DELETE | Elimina un producto del catálogo.                                                |
+
+## Nota
+Puede ser necesario modificar la base de datos para permitir que ciertos campos sean nulos en caso de que falten datos en el JSON de la petición.
 
 ## Cómo utilizar EndPoints
 
@@ -72,6 +78,7 @@ http://localhost:3001/catalogo
 ##
 - **Endpoint:**  `/catalogo/:id`  
 - **Descripción:** Filtra el catálogo por código de película/serie.
+- **Método:** `GET`
 - **Solicitud:**
 http://localhost:3001/catalogo/15
 
@@ -90,6 +97,7 @@ http://localhost:3001/catalogo/15
 ##
 - **Endpoint:** `/catalogo/titulo/:nombre`
 - **Descripción:** Filtra el catálogo por nombre o parte del nombre de la película/serie.
+- **Método:** `GET`
 - **Solicitud:**
 http://localhost:3001/catalogo/titulo/mand
 
@@ -110,6 +118,7 @@ http://localhost:3001/catalogo/titulo/mand
 ##
 - **Endpoint:** `/genero/:genero`
 - **Descripción:** Filtra el catálogo por género del contenido.
+- **Método:** `GET`
 - **Solicitud:**
 http://localhost:3001/genero/terror
 
@@ -151,6 +160,7 @@ http://localhost:3001/genero/terror
 ##
 - **Endpoint:** `/categoria/:categoria`
 - **Descripción:** Filtra el catálogo por categoría (serie, película).
+- **Método:** `GET`
 - **Solicitud:**
 http://localhost:3001/catalogo/:categoria
 
@@ -175,4 +185,57 @@ http://localhost:3001/catalogo/:categoria
         "temporadas": 5,
         "trailer": null
     },
+```
+##
+- **Endpoint:** `/catalogo`
+- **Descripción:** Crea un nuevo producto en el catálogo.
+- **Método:** `PATCH`
+- **Solicitud:** http://localhost:3001/catalogo
+
+- **Respuesta Exitosa:**
+```json
+[
+   {
+    "id": 37,
+    "poster": "/posters/asd.jpg",
+    "titulo": "Titulo",
+    "idCategoria": 1,
+    "resumen": "Esta es una nueva serie genérica para pruebas. Cuenta la historia de personajes ficticios en situaciones improbables.",
+    "temporadas": 4,
+    "trailer": null
+},
+```
+##
+- **Endpoint:** `/catalogo`
+- **Descripción:** Actualiza la información de un producto existente en el catálogo
+- **Método:** `PUT`
+- **Solicitud:** http://localhost:3001/catalogo/1
+
+- **Respuesta Exitosa:**
+```json
+[
+   {
+            "id": 37, // ID del producto actualizado
+            "poster": "/posters/asd.jpg",
+            "titulo": "Titulo",
+            "categoria": "Serie",
+            "genero": null,
+            "resumen": "Esta es una nueva serie genérica para pruebas. Cuenta la historia de personajes ficticios en situaciones improbables.",
+            "temporadas": 4,
+            "reparto": null,
+            "trailer": null
+        },
+```
+##
+- **Endpoint:** `/catalogo`
+- **Descripción:** Elimina un producto existente según si ID.
+- **Método:** `DELETE`
+- **Solicitud:** http://localhost:3001/catalogo/37 (el nuevo ID actualizado en el método `PUT` anterior)
+
+- **Respuesta Exitosa:**
+```json
+[
+   {
+    "message": "Producto eliminado correctamente."
+},
 ```
