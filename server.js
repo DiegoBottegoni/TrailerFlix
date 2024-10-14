@@ -64,15 +64,15 @@ app.get('/categorias', async (req, res) => {
     
 //// Sirve el catálogo completo ‘la vista SQL’ ////
 
-    app.get("/catalogo", async (req, res) => {
-      try {
-        const catalogo = await sequelize.query("SELECT * FROM vistacatalogo");
-        res.status(200).send(catalogo);
-      } catch (error) {
-        console.error("Error en la consulta SQL:", error);
-        res.status(500).json("Error en el servidor");
-      }
-    });
+  app.get("/catalogo", async (req, res) => {
+    try {
+      const catalogo = await sequelize.query("SELECT * FROM vista_catalogo");
+      res.status(200).send(catalogo);
+    } catch (error) {
+      console.error("Error en la consulta SQL:", error);
+      res.status(500).json("Error en el servidor");
+    }
+  });
 
 //// Filtra por id de la película/serie ////
 
@@ -171,5 +171,85 @@ app.get('/categoria/:categoria', async (req, res) => {
   }
 });
 
+//// Crear una nueva entrada en el catálogo ////
+
+app.post('/catalogo', async (req, res) => {
+  const { poster, titulo, idCategoria, genero, resumen, temporadas, reparto, trailer } = req.body;
+
+  // Validar que los campos requeridos no sean nulos
+  if (!poster || !resumen) {
+      return res.status(400).json({ error: "Los campos 'poster' y 'resumen' son obligatorios." });
+  }
+
+  try {
+      const nuevoProducto = await Catalogo.create({
+          poster,
+          titulo,
+          idCategoria,
+          genero,
+          resumen,
+          temporadas,
+          reparto,
+          trailer
+      });
+
+      res.status(201).json(nuevoProducto);
+  } catch (error) {
+      res.status(500).json({ error: 'Error al crear el producto', description: error.message });
+  }
+});
+
+
+//// Actualizar un registro existente ////
+
+app.patch('/catalogo/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { titulo, idCategoria, descripcion } = req.body;
+    
+    const producto = await Catalogo.findByPk(id);
+    
+    if (!producto) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+    
+    // Actualiza el registro
+    await producto.update({ titulo, idCategoria, descripcion });
+    
+    res.status(200).json(producto);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al actualizar el producto', description: error.message });
+  }
+});
+
+//// Eliminar registro por ID////
+
+app.delete('/catalogo/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      // Primero, eliminamos los registros relacionados en catalogoreparto
+      await CatalogoReparto.destroy({
+          where: {
+              idCatalogo: id
+          }
+      });
+
+      // Luego, eliminamos el producto del catálogo
+      const deletedCount = await Catalogo.destroy({
+          where: {
+              id: id
+          }
+      });
+
+      if (deletedCount === 0) {
+          return res.status(404).json({ error: "Producto no encontrado." });
+      }
+
+      res.status(200).json({ message: "Producto eliminado correctamente." });
+  } catch (error) {
+      res.status(500).json({ error: 'Error al eliminar el producto', description: error.message });
+  }
+});
 
  app.listen(port, () => console.log(`Servidor escuchando en el puerto ${port}`) );
