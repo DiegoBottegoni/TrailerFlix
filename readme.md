@@ -191,6 +191,19 @@ http://localhost:3001/catalogo/:categoria
 - **Descripción:** Crea un nuevo producto en el catálogo.
 - **Método:** `PATCH`
 - **Solicitud:** http://localhost:3001/catalogo
+- **Request Body**
+```json
+{
+        "poster": "/posters/asd.jpg",
+        "titulo": "Titulo",
+        "idCategoria": 1,
+        "genero": null,
+        "resumen": "Esta es una nueva serie genérica para pruebas. Cuenta la historia de personajes ficticios en situaciones improbables.",
+        "temporadas": 4,
+        "reparto": "Claire Fox, Helena Bonham Carter, Matt Smith, Olivia Colman, Tobias Menzies, Vanesa Kirby",
+        "trailer": null
+    }
+```
 
 - **Respuesta Exitosa:**
 ```json
@@ -210,7 +223,19 @@ http://localhost:3001/catalogo/:categoria
 - **Descripción:** Actualiza la información de un producto existente en el catálogo
 - **Método:** `PUT`
 - **Solicitud:** http://localhost:3001/catalogo/1
-
+- **Request Body**
+```json
+{
+    "poster": "/posters/nuevo.jpg",
+    "titulo": "Nuevo Titulo",
+    "idCategoria": 1,
+    "genero": null,
+    "resumen": "Este es un nuevo resumen para la serie.",
+    "temporadas": 5,
+    "reparto": "Nuevo Reparto",
+    "trailer": null
+}
+```
 - **Respuesta Exitosa:**
 ```json
 [
