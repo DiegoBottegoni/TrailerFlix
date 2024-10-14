@@ -189,7 +189,7 @@ http://localhost:3001/catalogo/:categoria
 ##
 - **Endpoint:** `/catalogo`
 - **Descripción:** Crea un nuevo producto en el catálogo.
-- **Método:** `PATCH`
+- **Método:** `PUT`
 - **Solicitud:** http://localhost:3001/catalogo
 - **Request Body**
 ```json
@@ -221,7 +221,7 @@ http://localhost:3001/catalogo/:categoria
 ##
 - **Endpoint:** `/catalogo`
 - **Descripción:** Actualiza la información de un producto existente en el catálogo
-- **Método:** `PUT`
+- **Método:** `PATCH`
 - **Solicitud:** http://localhost:3001/catalogo/1
 - **Request Body**
 ```json
