@@ -161,8 +161,7 @@ http://localhost:3001/genero/terror
 - **Endpoint:** `/categoria/:categoria`
 - **Descripción:** Filtra el catálogo por categoría (serie, película).
 - **Método:** `GET`
-- **Solicitud:**
-http://localhost:3001/catalogo/:categoria
+- **Solicitud:** http://localhost:3001/categoria/serie
 
 - **Respuesta Exitosa: (resumida, la totalidad es extremadamente extensa)**
 ```json
