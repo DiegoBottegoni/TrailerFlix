@@ -255,7 +255,7 @@ http://localhost:3001/catalogo/:categoria
 - **Endpoint:** `/catalogo`
 - **Descripción:** Elimina un producto existente según si ID.
 - **Método:** `DELETE`
-- **Solicitud:** http://localhost:3001/catalogo/37 (el nuevo ID actualizado en el método `PUT` anterior)
+- **Solicitud:** http://localhost:3001/catalogo/37 (el nuevo ID actualizado en el método `PATCH` anterior)
 
 - **Respuesta Exitosa:**
 ```json
